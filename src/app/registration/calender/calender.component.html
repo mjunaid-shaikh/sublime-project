@@ -1,0 +1,176 @@
+<!-- Header of the calender page -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"
+          >Home <span class="sr-only">(current)</span></a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          role="button"
+          data-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Dropdown
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input
+        class="form-control mr-sm-2"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+      />
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+        Search
+      </button>
+    </form>
+  </div>
+</nav>
+
+<form class="calenderForm" #formData="ngForm" (ngSubmit)="onSave(formData)">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <!-- <div class="col-md-3"></div> -->
+      <div class="col-md-6 card calender-container shadow-lg my-3">
+        <h1 class="mt-3 d-flex justify-content-center">
+          {{ Registration }} Page
+        </h1>
+
+        <!-- Tournament section -->
+        <div class="row my-4">
+          <div class="col-md-6">
+            <mat-form-field appearance="fill">
+              <mat-label>Tournament Start Date</mat-label>
+              <input
+                name="tStartDate"
+                [(ngModel)]="tStartDate"
+                [min]="tournamentStartMinDate | date: 'yyyy-MM-dd'"
+                [max]="tournamentStartMaxDate | date: 'yyyy-MM-dd'"
+                matInput
+                (dateChange)="onTournamentStart($event)"
+                [matDatepicker]="picker"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="fill">
+              <mat-label>Tournament End Date</mat-label>
+              <input
+                name="tEndDate"
+                [(ngModel)]="tEndDate"
+                [min]="tournamentEndtMinDate | date: 'yyyy-MM-dd'"
+                [max]="tournamentEndtMaxDate | date: 'yyyy-MM-dd'"
+                matInput
+                [matDatepicker]="picker2"
+                (dateChange)="onTournamentEnd($event)"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker2"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- Registeration section -->
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field appearance="fill">
+              <mat-label>Registeration Open Date</mat-label>
+              <input
+                name="rStartDate"
+                [(ngModel)]="rStartDate"
+                [min]="registrationStartMinDate | date: 'yyyy-MM-dd'"
+                [max]="registrationStartMaxDate | date: 'yyyy-MM-dd'"
+                matInput
+                [matDatepicker]="picker3"
+                (dateChange)="onRegisterationStart($event)"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker3"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker3></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="fill">
+              <mat-label>Registeration Close Date</mat-label>
+              <input
+                name="rEndDate"
+                [(ngModel)]="rEndDate"
+                [min]="registrationEndMinDate | date: 'yyyy-MM-dd'"
+                [max]="registrationEndMaxDate | date: 'yyyy-MM-dd'"
+                matInput
+                [matDatepicker]="picker4"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker4"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker4></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <section class="mb-2">
+          <div class="btn d-flex justify-content-end">
+            <button mat-raised-button color="primary" type="submit">
+              Submit
+            </button>
+            &nbsp;&nbsp;
+            <button
+              mat-raised-button
+              color="primary"
+              type="button"
+              (click)="getFormData()"
+            >
+              Get Data</button
+            >&nbsp;&nbsp;
+            <button
+              mat-raised-button
+              color="primary"
+              type="button"
+              (click)="clear()"
+            >
+              Clear Data
+            </button>
+          </div>
+        </section>
+      </div>
+      <!-- <div class="col-md-3"></div> -->
+    </div>
+  </div>
+</form>
